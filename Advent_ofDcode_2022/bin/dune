@@ -1,0 +1,4 @@
+(executable
+ (public_name Advent_ofDcode_2022)
+ (name main)
+ (libraries Advent_ofDcode_2022))
