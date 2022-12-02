@@ -1,14 +1,3 @@
-let read_file filename = 
-  let lines = ref [] in
-  let chan = open_in filename in
-  try
-    while true; do
-      lines :=  input_line chan :: !lines;
-    done; !lines
-  with End_of_file ->
-    close_in chan;
-    List.rev !lines ;;
-
 let get_calories_list list =
   let lines = ref [] in
   let rec aux acc= function
@@ -54,19 +43,24 @@ let replace new_value list =
       else list 
 ;;
 
-  
+let init_list n =
+  let rec aux list = function
+    | 0 -> list
+    | n -> aux (min_int-n::list) (n-1)
+  in aux [] n
+;;
 
 let get_top_max n list =
   let rec aux temporal_max = function
     | [] -> temporal_max
     | value :: l -> aux (replace value temporal_max) l
-  in aux [min_int;min_int + 1;min_int + 2] list
+  in aux (init_list n) list
 ;;
 
 let print_int_list list =
       List.iter (fun value -> print_int value; print_newline ()) list 
 ;;
 
-
-let () = read_file "input.txt" |> get_calories_list |> get_top_max 3 |> print_int_list
-      
+let run () = 
+Utilities.read_file "ressources/Day1/input.txt" |> get_calories_list |> get_top_max 3 |> print_int_list
+;;
