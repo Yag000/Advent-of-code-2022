@@ -1,3 +1,3 @@
 open Lib
 
-let () = Day3_1.run ()
+let () = Day3_2.run ()
