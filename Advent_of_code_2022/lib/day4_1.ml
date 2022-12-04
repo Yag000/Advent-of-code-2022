@@ -1,4 +1,4 @@
-let do_overlap (x0, x1) (y0, y1) =
+let is_contained (x0, x1) (y0, y1) =
   if x0 >= y0 && x1 <= y1 then true
   else if y0 >= x0 && y1 <= x1 then true
   else false
