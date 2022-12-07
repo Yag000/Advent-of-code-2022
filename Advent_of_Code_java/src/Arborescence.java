@@ -169,6 +169,14 @@ public class Arborescence {
         this.folders.put("/", size);
     }
 
+    /**
+     * We browse the hash map and we find the folder which has the size of the
+     * smallest folder which we need to remove to get {@code freeSpace} free space.
+     * 
+     * @param maxSize   the size of the file system
+     * @param freeSpace the free space we need
+     * @return the size of the folder we need to remove
+     */
     public int findSizeFileToRemove(int maxSize, int freeSpace) {
         int localMin = Integer.MAX_VALUE;
 
