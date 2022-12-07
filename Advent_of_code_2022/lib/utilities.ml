@@ -9,3 +9,6 @@ let read_file filename =
   with End_of_file ->
     close_in channel;
     List.rev !lines
+
+let head = function [] -> failwith "head" | x :: _ -> x
+let tail = function [] -> failwith "tail" | _ :: xs -> xs
