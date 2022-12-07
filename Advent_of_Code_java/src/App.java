@@ -15,9 +15,10 @@ public class App {
             sc.close();
 
             arborescence.browseArborescence();
+            System.out.println("Day 7.1");
             System.out.println(arborescence.browseHashMap(100000));
+            System.out.println("Day 7.2");
             System.out.println(arborescence.findSizeFileToRemove(70000000, 30000000));
-            System.out.println(arborescence.getRootSize());
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("File not found");
