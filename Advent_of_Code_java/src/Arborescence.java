@@ -1,0 +1,207 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Arborescence {
+
+    private Folder root;
+
+    private Folder current;
+
+    // Hash map which contains all the folders and its sizes
+    private HashMap<String, Integer> folders = new HashMap<>();
+
+    public Arborescence(Scanner sc) {
+        this.root = new Folder("/", 0);
+        this.current = this.root;
+
+        treatInput(sc);
+    }
+
+    private abstract class Element {
+        private String name;
+        private int size;
+
+        public Element(String name, int size) {
+            this.name = name;
+            this.size = size;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public int getSize() {
+            return this.size;
+        }
+    }
+
+    private class File extends Element {
+        public File(String name, int size) {
+            super(name, size);
+        }
+    }
+
+    private class Folder extends Element {
+        private Set<Element> elements;
+
+        private Folder parent;
+
+        public Folder(String name, int size, Folder parent) {
+            super(parent.getName() + name, size);
+
+            this.parent = parent;
+
+            this.elements = new HashSet<>();
+        }
+
+        public Folder(String name, int size) {
+            super(name, size);
+
+            this.parent = this;
+
+            this.elements = new HashSet<>();
+        }
+
+        public Set<Element> getElements() {
+            return this.elements;
+        }
+
+        public void addElement(Element element) {
+            this.elements.add(element);
+        }
+
+        public int getSize() {
+            int size = 0;
+            for (Element element : this.elements) {
+                size += element.getSize();
+            }
+            return size;
+        }
+
+        /**
+         * We browse the folder recursively and we add the size of each folder to the
+         * HashMap.
+         */
+        public void browseFolder() {
+            for (Element element : this.elements) {
+                if (element instanceof Folder) {
+                    Folder folder = (Folder) element;
+                    folders.put(folder.getName(), folder.getSize());
+                    folder.browseFolder();
+                }
+            }
+
+        }
+
+    }
+
+    public void cd() {
+        this.current = root;
+    }
+
+    public void cdBack() {
+        this.current = this.current.parent;
+    }
+
+    public void cd(String name) {
+        for (Element element : this.current.getElements()) {
+            if (element.getName().equals(this.current.getName() + name)) {
+                this.current = (Folder) element;
+            }
+        }
+    }
+
+    public void createFolder(String name) {
+        Folder folder = new Folder(name, 0, this.current);
+        this.current.addElement(folder);
+    }
+
+    public void createFile(String name, int size) {
+        File file = new File(name, size);
+        this.current.addElement(file);
+    }
+
+    public void treatInput(Scanner sc) {
+        sc.nextLine();
+
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            String[] command = line.split(" ");
+
+            switch (command[0]) {
+                case "$":
+                    if (command[1].equals("cd")) {
+                        if (command.length == 2) {
+                            this.cd();
+                        } else if (command[2].equals("..")) {
+                            this.cdBack();
+                        } else {
+                            this.cd(command[2]);
+                        }
+                    }
+                    break;
+
+                case "dir":
+                    this.current.addElement(new Folder(command[1], 0, current));
+                    break;
+                default:
+                    this.current.addElement(new File(command[1], Integer.parseInt((command[0]))));
+            }
+        }
+    }
+
+    /**
+     * We browse the arborescence and we add the size of each folder to the HashMap.
+     */
+    public void browseArborescence() {
+        this.root.browseFolder();
+
+        int size = 0;
+        for (Element e : this.root.getElements()) {
+            if (e instanceof Folder) {
+                size += this.folders.get(e.getName());
+            } else {
+                size += e.getSize();
+            }
+        }
+        this.folders.put("/", size);
+    }
+
+    public int findSizeFileToRemove(int maxSize, int freeSpace) {
+        int localMin = Integer.MAX_VALUE;
+
+        int neededSpace = freeSpace - (maxSize - this.folders.get("/"));
+
+        for (String key : folders.keySet()) {
+            if (folders.get(key) > neededSpace && folders.get(key) < localMin) {
+                localMin = folders.get(key);
+            }
+        }
+
+        return localMin;
+    }
+
+    /**
+     * We browse the hash map and we sum the sizes of every folder wick has a size
+     * of less tha {@code maxSize}
+     * 
+     * @param maxSize
+     */
+    public int browseHashMap(int maxSize) {
+        int size = 0;
+
+        for (String key : folders.keySet()) {
+            if (folders.get(key) < maxSize) {
+                size += folders.get(key);
+            }
+        }
+        return size;
+    }
+
+    public int getRootSize() {
+        return this.folders.get("/");
+    }
+
+}
