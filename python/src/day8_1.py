@@ -1,4 +1,51 @@
-import tabulate
+import math
+
+
+def compute_visible_trees_from_position(trees, i, j):
+    """Returns the amount of visible trees from a given position.
+
+    Args:
+        trees (lis[list[int]]): The list of trees
+        i (int): Coordinate i
+        j (int): Coordinate j
+    """
+
+    height = trees[i][j]
+    counter = []
+
+    count = 0
+    for x in range(i + 1, len(trees)):
+        count += 1
+        if trees[x][j] >= height:
+            break
+
+    counter.append(count)
+    count = 0
+
+    for x in range(i - 1, -1, -1):
+        count += 1
+        if trees[x][j] >= height:
+            break
+
+    counter.append(count)
+    count = 0
+
+    for y in range(j + 1, len(trees[i])):
+        count += 1
+        if trees[i][y] >= height:
+            break
+
+    counter.append(count)
+    count = 0
+
+    for y in range(j - 1, -1, -1):
+        count += 1
+        if trees[i][y] >= height:
+            break
+
+    counter.append(count)
+
+    return math.prod(counter)
 
 
 def is_visible(trees, i, j):
@@ -59,6 +106,18 @@ def compute_visible(trees):
     return counter
 
 
+def compute_best_vision(trees):
+    counter = 0
+
+    for i in range(len(trees)):
+        for j in range(len(trees[0])):
+            new_value = compute_visible_trees_from_position(trees, i, j)
+            if new_value > counter:
+                counter = new_value
+
+    return counter
+
+
 def treat_input(path):
     """Treats the input
 
@@ -80,13 +139,13 @@ def treat_input(path):
 
     array_of_trees[-1].append(int(last_char))
 
-    print(tabulate.tabulate(array_of_trees))
-
     return array_of_trees
 
 
 def main():
-    print(compute_visible(treat_input('resources/day8_input.txt')))
+    input_value = treat_input('resources/day8_input.txt')
+    print(compute_visible(input_value))
+    print(compute_best_vision(input_value))
 
 
 if __name__ == "__main__":
