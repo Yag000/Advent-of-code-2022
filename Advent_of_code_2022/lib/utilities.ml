@@ -9,3 +9,5 @@ let read_file filename =
   with End_of_file ->
     close_in channel;
     List.rev !lines
+
+let string_to_char_list s = s |> String.to_seq |> List.of_seq
