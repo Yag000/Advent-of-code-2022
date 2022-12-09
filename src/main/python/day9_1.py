@@ -3,18 +3,36 @@ import math
 
 class Rope:
 
+    """
+    Class representing a Rope, which is made up of a number of nodes.
+
+    Attributes:
+    - size (int): the number of nodes in the rope
+    - nodes (List[List[int]]): the coordinates of each node in the rope
+    - tiles_visited (Set[Tuple[int,int]]): the coordinates of tiles visited by the rope
+    """
+
     def __init__(self, size):
+        """
+        Initializes a new Rope object with the given number of nodes.
+
+        :param size: the number of nodes in the rope
+        """
+
         self.size = size
         self.nodes = [[0, 0] for _ in range(size)]
         self.tiles_visited = set()
 
-    def compute_distance(self, pos1, pos2):
-        return math.sqrt(abs(self.nodes[pos1][0] - self.nodes[pos2][0])**2 + abs(self.nodes[pos1][1] - self.nodes[pos2][1])**2)
-
     def compute_next_position(self, i):
+        """
+        Computes the next position for the node at the given index.
 
-        dx = self.nodes[i-1][0] - self.nodes[i][0]
-        dy = self.nodes[i-1][1] - self.nodes[i][1]
+        :param i: the index of the node to compute the next position for
+        :return: the next position for the node
+        """
+
+        dx = self.nodes[i - 1][0] - self.nodes[i][0]
+        dy = self.nodes[i - 1][1] - self.nodes[i][1]
 
         if abs(dx) < 2 and abs(dy) < 2:
             return (0, 0)
@@ -43,33 +61,38 @@ class Rope:
         return (dx, dy)
 
     def update_position(self, i):
+        """
+        Updates the position of the node at the given index.
+
+        :param i: the index of the node to update
+        """
         dx, dy = self.compute_next_position(i)
         self.nodes[i][0] += dx
         self.nodes[i][1] += dy
 
     def move_head(self, direction):
-        if direction == 'U':
+        """
+        Moves the head of the rope in the given direction.
+
+        :param direction: the direction to move the head in (U, D, L, or R)
+        """
+
+        if direction == "U":
             self.nodes[0][1] += 1
-        elif direction == 'D':
+        elif direction == "D":
             self.nodes[0][1] -= 1
-        elif direction == 'R':
+        elif direction == "R":
             self.nodes[0][0] += 1
         else:
             self.nodes[0][0] -= 1
 
-    def move_node(self, index, last_positions):
-        self.nodes[index][0] = last_positions[index - 1][0]
-        self.nodes[index][1] = last_positions[index - 1][1]
-
-    def copy_of_nodes(self):
-        new_nodes = []
-
-        for node in self.nodes:
-            new_nodes.append((node[0], node[1]))
-
-        return new_nodes
-
     def move(self, direction, steps):
+        """Move the rope in the specified direction for the given number of steps.
+
+        Args:
+            direction (str): The direction to move in (N, E, S, or W).
+            steps (int): The number of steps to take in the given direction.
+        """
 
         for _ in range(steps):
             self.move_head(direction)
@@ -77,52 +100,23 @@ class Rope:
             for i in range(1, self.size):
                 self.update_position(i)
 
-            self.tiles_visited.add(
-                (self.nodes[-1][0], self.nodes[-1][1]))
-
-    def print_rope(self):
-        xMax = max([M[0] for M in self.nodes])
-        xMin = min([M[0] for M in self.nodes])
-        yMin = min([M[1] for M in self.nodes])
-        yMax = max([M[1] for M in self.nodes])
-
-        # print(f"({xMin},{yMin}) ; ({xMax}, {yMax})")
-        print("-"*10)
-
-        board = []
-
-        def dictIndex(value):
-            if (value == 0):
-                return "H"
-            return str(value)
-
-        for y in range(yMin, yMax + 1, 1):
-            line = ""
-            for x in range(xMin, xMax + 1, 1):
-                if x == 0 and y == 0 and [x, y] in self.nodes:
-                    line += "s"
-                elif [x, y] in self.nodes:
-                    line += dictIndex(self.nodes.index([x, y]))
-                else:
-                    line += "."
-            board.insert(0, line)
-
-        print(*board, sep="\n")
+            self.tiles_visited.add((self.nodes[-1][0], self.nodes[-1][1]))
 
 
 def treat_input(path, size):
-    """Treats the input
+    """Process the input file and return the number of tiles visited by the rope.
 
     Args:
-        path (str): Path to the input file
+        path (str): The path to the input file.
+        size (int): The size of the rope.
 
     Returns:
-        list[list[int]]: The list of trees
+        int: The number of tiles visited by the rope.
     """
 
     rope = Rope(size)
 
-    with open(path, 'r') as f:
+    with open(path, "r") as f:
         for line in f:
             rope.move(line[0], int(line[2:]))
 
@@ -130,7 +124,9 @@ def treat_input(path, size):
 
 
 def main():
-    input_value = treat_input('resources/day9_input.txt', 10)
+    """Process the input file and print the number of tiles visited by the rope."""
+
+    input_value = treat_input("resources/day9_input.txt", 10)
     print(input_value)
 
 
