@@ -62,6 +62,7 @@ hs_err_pid*
 __pycache__/
 *.py[cod]
 *$py.class
+_bin/
 
 ## IDE
 
