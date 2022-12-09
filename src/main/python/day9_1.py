@@ -11,6 +11,42 @@ class Rope:
     def compute_distance(self, pos1, pos2):
         return math.sqrt(abs(self.nodes[pos1][0] - self.nodes[pos2][0])**2 + abs(self.nodes[pos1][1] - self.nodes[pos2][1])**2)
 
+    def compute_next_position(self, i):
+
+        dx = self.nodes[i-1][0] - self.nodes[i][0]
+        dy = self.nodes[i-1][1] - self.nodes[i][1]
+
+        if abs(dx) < 2 and abs(dy) < 2:
+            return (0, 0)
+
+        if dy == 0:
+            return (1 if dx > 0 else -1, 0)
+        if dx == 0:
+            return (0, 1 if dy > 0 else -1)
+
+        # is on the top right corner
+        if dx < 0 and dy < 0:
+            return (-1, -1)
+
+        # is on the top left corner
+        if dx < 0 and dy > 0:
+            return (-1, 1)
+
+        # is on the top right corner
+        if dx > 0 and dy < 0:
+            return (1, -1)
+
+        # is on the top right corner
+        if dx > 0 and dy > 0:
+            return (1, 1)
+
+        return (dx, dy)
+
+    def update_position(self, i):
+        dx, dy = self.compute_next_position(i)
+        self.nodes[i][0] += dx
+        self.nodes[i][1] += dy
+
     def move_head(self, direction):
         if direction == 'U':
             self.nodes[0][1] += 1
@@ -36,12 +72,10 @@ class Rope:
     def move(self, direction, steps):
 
         for _ in range(steps):
-            old_positions = self.copy_of_nodes()
             self.move_head(direction)
 
             for i in range(1, self.size):
-                if self.compute_distance(i - 1, i) >= 2:
-                    self.move_node(i, old_positions)
+                self.update_position(i)
 
             self.tiles_visited.add(
                 (self.nodes[-1][0], self.nodes[-1][1]))
@@ -92,13 +126,11 @@ def treat_input(path, size):
         for line in f:
             rope.move(line[0], int(line[2:]))
 
-    print(rope.nodes[0][0], rope.nodes[0][1])
-    print(rope.nodes[-1][0], rope.nodes[-1][1])
     return len(rope.tiles_visited)
 
 
 def main():
-    input_value = treat_input('resources/day9_input.txt', 2)
+    input_value = treat_input('resources/day9_input.txt', 10)
     print(input_value)
 
 
