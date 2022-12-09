@@ -35,7 +35,7 @@ let convert_to_string list = (List.nth list 0, List.nth list 1, List.nth list 2)
    * *)
 let compute_value list =
   convert_to_string list |> convert_to_list |> find_first_repeated
-  |> Day3_2.get_value
+  |> Day3_1.get_value
 
 (* **
    * treat_list takes a list of strings as an argument and returns the sum of the values of the first repeated character in
