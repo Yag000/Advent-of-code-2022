@@ -1,10 +1,4 @@
 (* **
-   * The cargo type is an array of lists of characters, where each list represents
-   * the contents of a cargo container.
-   * *)
-type cargo = Array of char list
-
-(* **
    * get_batch takes a number, a start position, and a cargo, and returns a list of
    * characters that represent the first `number` characters in the container at
    * position `start` in the cargo.

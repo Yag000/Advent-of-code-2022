@@ -1,3 +1,7 @@
+(* **
+   * The cargo type is an array of lists of characters, where each list represents
+   * the contents of a cargo container.
+   * *)
 type cargo = Array of char list
 
 (* **
@@ -12,10 +16,19 @@ let print_cargo cargo =
     print_newline ()
   done
 
+(* ** 
+  * move_one takes a start position, an end position, and an array of char lists as arguments. It moves the head element
+  * of the char list at the start position to the end position and updates the start position's char list to remove that
+  * element. 
+ * *)
 let move_one start end_ cargo =
   cargo.(end_) <- Utilities.head cargo.(start) :: cargo.(end_);
   cargo.(start) <- Utilities.tail cargo.(start)
 
+(* **
+   * move takes a number of moves, a start position, an end position, and an array of char lists as arguments. It performs
+   * the specified number of moves from the start position to the end position.
+   * *)
 let move number start end_ cargo =
   for _ = 1 to number do
     move_one start end_ cargo
@@ -27,6 +40,11 @@ let move number start end_ cargo =
    * *)
 let add_to_cargo pos value cargo = cargo.(pos) <- value :: cargo.(pos)
 
+(* **
+   * treat_command takes a string and an array of char lists as arguments. It parses the string to extract information about
+   * the number of moves, the start and end positions, and performs the specified number of moves from the start position to
+   * the end position.
+   * *)
 let treat_command s cargo =
   let info = String.split_on_char ' ' s in
   move
