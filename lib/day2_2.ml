@@ -1,39 +1,33 @@
-type move = ROCK | PAPER | SCISSORS
+(* get_winning_move: returns the move that would win against the given move *)
+let get_winning_move (move : Day2_1.Move.move) : Day2_1.Move.move =
+  match move with ROCK -> PAPER | PAPER -> SCISSORS | SCISSORS -> ROCK
 
-let get_winning_move = function
-  | ROCK -> PAPER
-  | PAPER -> SCISSORS
-  | SCISSORS -> ROCK
+(* get_loosing_move: returns the move that would lose against the given move *)
+let get_loosing_move (move : Day2_1.Move.move) : Day2_1.Move.move =
+  match move with PAPER -> ROCK | ROCK -> SCISSORS | SCISSORS -> PAPER
 
-let get_loosing_move = function
-  | PAPER -> ROCK
-  | ROCK -> SCISSORS
-  | SCISSORS -> PAPER
-
+(* instruction_to_move: returns the move indicated by the given instruction, based on the given move *)
 let instruction_to_move move = function
   | "X" -> get_loosing_move move
   | "Y" -> move
   | "Z" -> get_winning_move move
   | _ -> failwith "Invalid instruction"
 
-let string_to_move = function
-  | "A" -> ROCK
-  | "B" -> PAPER
-  | "C" -> SCISSORS
-  | _ -> failwith "invalid move"
-
-let get_round_result_player_one = function
+(* get_round_result_player_one: returns the points awarded to player one for the given moves in a round *)
+let get_round_result_player_one (move : Day2_1.Move.move * Day2_1.Move.move) :
+    int =
+  match move with
   | ROCK, ROCK | SCISSORS, SCISSORS | PAPER, PAPER -> 3
   | ROCK, SCISSORS | SCISSORS, PAPER | PAPER, ROCK -> 0
   | _ -> 6
 
-let get_points_from_move = function ROCK -> 1 | PAPER -> 2 | SCISSORS -> 3
-
+(* treat_string: treats a string representing a single round and returns the points awarded in that round *)
 let treat_string s =
-  let move1 = string_to_move (String.sub s 0 1) in
+  let move1 = Day2_1.string_to_move (String.sub s 0 1) in
   let move2 = instruction_to_move move1 (String.sub s 2 1) in
-  get_points_from_move move2 + get_round_result_player_one (move1, move2)
+  Day2_1.get_points_from_move move2 + get_round_result_player_one (move1, move2)
 
+(* treat_string_list: treats a list of strings representing rounds and returns the total points awarded *)
 let treat_string_list l =
   let rec aux acc = function
     | [] -> acc
