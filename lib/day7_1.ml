@@ -121,6 +121,6 @@ let rec compute_sum max_size folder =
 let run () =
   print_newline ();
   print_newline ();
-  Utilities.read_file "resources/day7_input.txt"
+  Utilities.read_file "resources/day7.txt"
   |> treat_input |> generate_arborescence |> compute_sum 100000 |> print_int;
   print_newline ()

@@ -78,5 +78,5 @@ let treat_input list =
 let run () =
   print_newline ();
   print_newline ();
-  Utilities.read_file "resources/day8_input.txt" |> treat_input |> print_int;
+  Utilities.read_file "resources/day8.txt" |> treat_input |> print_int;
   print_newline ()

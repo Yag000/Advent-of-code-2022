@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * is_contained takes two pairs of integers as arguments and returns a boolean indicating whether the first pair is
    * contained within the second pair.
@@ -38,5 +40,4 @@ let treat_list =
   aux 0
 
 let run () =
-  Utilities.read_file "resources/day4_input.txt"
-  |> treat_list |> Printf.printf "%d"
+  Utilities.read_file "resources/day4.txt" |> treat_list |> Printf.printf "%d"

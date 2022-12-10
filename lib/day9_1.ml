@@ -133,6 +133,6 @@ let treat_input list =
 let run () =
   print_newline ();
   print_newline ();
-  Utilities.read_file_reversed "resources/day9_input.txt"
+  Utilities.read_file_reversed "resources/day9.txt"
   |> treat_input |> Tuple.cardinal |> print_int;
   print_newline ()

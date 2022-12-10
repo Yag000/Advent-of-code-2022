@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * get_min takes a list of integers as an argument and returns the minimum value in the list.
    * *)
@@ -31,7 +33,7 @@ let replace new_value list =
 let init_list n =
   let rec aux list = function
     | 0 -> list
-    | n -> aux ((min_int - n) :: list) (n - 1)
+    | n -> aux ((min_int + n) :: list) (n - 1)
   in
   aux [] n
 
@@ -59,5 +61,6 @@ let print_int_list list =
     list
 
 let run () =
-  Utilities.read_file "resources/day1_input.txt"
-  |> Day1_1.get_calories_list |> get_top_max 3 |> print_int_list
+  Utilities.read_file "resources/day1.txt"
+  |> Day1_1.get_calories_list |> get_top_max 3 |> List.fold_left ( + ) 0
+  |> print_int

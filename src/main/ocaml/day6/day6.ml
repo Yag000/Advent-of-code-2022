@@ -1,3 +1,5 @@
+open Lib
+
 (* Defines a module named [Chars] that uses the [Set.Make]
    functor to create a set data structure of type [char]. *)
 module Chars = Set.Make (Char)
@@ -27,9 +29,24 @@ let treat_string number s =
 
   aux (number - 1) (String.sub s 0 (number - 1))
 
-let run () =
+let run1 () =
+  Utilities.read_file "resources/day6.txt"
+  |> Utilities.head |> treat_string 4 |> print_int
+
+let run2 () =
+  Utilities.read_file "resources/day6.txt"
+  |> Utilities.head |> treat_string 14 |> print_int
+
+let () =
+  print_newline ();
+  print_endline "Day 4";
+  print_newline ();
+  print_endline "Part 1";
+  print_newline ();
+  run1 ();
   print_newline ();
   print_newline ();
-  Utilities.read_file "resources/day6_input.txt"
-  |> Utilities.head |> treat_string 14 |> print_int;
+  print_endline "Part 2";
+  print_newline ();
+  run2 ();
   print_newline ()

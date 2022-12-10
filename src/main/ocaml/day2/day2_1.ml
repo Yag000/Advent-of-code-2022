@@ -1,3 +1,5 @@
+open Lib
+
 module type MOVE = sig
   (* The `MOVE` module type defines the types and functions for a game of rock-paper-scissors. *)
   type move = ROCK | PAPER | SCISSORS
@@ -83,5 +85,5 @@ let treat_string_list l =
   aux 0 l
 
 let run () =
-  Utilities.read_file "resources/day2_input.txt"
+  Utilities.read_file "resources/day2.txt"
   |> treat_string_list |> string_of_int |> print_endline

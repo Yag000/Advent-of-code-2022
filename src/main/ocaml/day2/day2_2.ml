@@ -1,3 +1,5 @@
+open Lib
+
 (* get_winning_move: returns the move that would win against the given move *)
 let get_winning_move (move : Day2_1.Move.move) : Day2_1.Move.move =
   match move with ROCK -> PAPER | PAPER -> SCISSORS | SCISSORS -> ROCK
@@ -36,5 +38,5 @@ let treat_string_list l =
   aux 0 l
 
 let run () =
-  Utilities.read_file "resources/day2_input.txt"
+  Utilities.read_file "resources/day2.txt"
   |> treat_string_list |> string_of_int |> print_endline

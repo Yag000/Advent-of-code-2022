@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * [treat_input first_cycle cycle_length last_cycle list] is a function that
    * processes the list of inputs in [list]. The first cycle in which the register
@@ -32,8 +34,5 @@ let treat_input first_cycle cycle_length last_cycle list =
   aux 1 1 0 list
 
 let run () =
-  print_newline ();
-  print_newline ();
-  Utilities.read_file "resources/day10_input.txt"
-  |> treat_input 20 40 220 |> print_int;
-  print_newline ()
+  Utilities.read_file "resources/day10.txt"
+  |> treat_input 20 40 220 |> print_int

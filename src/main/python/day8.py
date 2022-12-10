@@ -183,7 +183,7 @@ def main():
     the results to the console.
     """
 
-    input_value = treat_input("resources/day8_input.txt")
+    input_value = treat_input("resources/day8.txt")
     print(compute_visible(input_value))
     print(compute_best_vision(input_value))
 

@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * find_first_repeated takes two lists as arguments and returns the first element that appears in both lists.
    * *)
@@ -60,5 +62,4 @@ let treat_list =
   treat_list' 0
 
 let run () =
-  Utilities.read_file "resources/day3_input.txt"
-  |> treat_list |> Printf.printf "%d"
+  Utilities.read_file "resources/day3.txt" |> treat_list |> Printf.printf "%d"
