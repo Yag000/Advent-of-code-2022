@@ -34,7 +34,3 @@ Alternatively, you can run `dune exec` to run a specific solution directly, with
 ```bash
 dune exec src/main/ocaml/day1/day1.exe
 ```
-
-## License
-
-This project is licensed under the MIT License. See LICENSE for more details.
