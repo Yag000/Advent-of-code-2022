@@ -1,18 +1,40 @@
-## Getting Started
+# Advent of Code 2022 Solutions
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This repository contains my solutions to the [Advent of Code 2022](https://adventofcode.com/2022) programming challenges. I have implemented my solutions in three languages: OCaml, Java, and Python. The majority of my solutions are written in OCaml, with a few in Java and Python for specific challenges where those languages are better suited.
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+This project is structured as a [dune](https://dune.build) project, with the following layout:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+* `src/`: Contains the source code for my solutions, organized by language
+  * `src/main/ocaml/`: Contains my OCaml solutions
+  * `src/main/java/`: Contains my Java solutions
+  * `src/main/python/`: Contains my Python solutions
+* `resources/`: Contains the input files for the challenges
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Running the Solutions
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+To run the solutions, you will need to have [dune](https://dune.build) installed. You can then navigate to the root of the project and run the following command to build the executables for each solution:
 
-## Dependency Management
+```bash
+dune build
+```
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+This will create executables for each solution in the `_build` directory. You can then run a specific solution by navigating to the appropriate directory and running the executable, for example:
+
+```bash
+cd _build/default/src/main/ocaml/day1
+./day1.exe
+```
+
+This will run the solution for Day 1 in OCaml, using the input from the `resources/day1.txt` file.
+
+Alternatively, you can run `dune exec` to run a specific solution directly, without building all of the executables first. For example:
+
+```bash
+dune exec src/main/ocaml/day1/day1.exe
+```
+
+## License
+
+This project is licensed under the MIT License. See LICENSE for more details.
