@@ -1,3 +1,9 @@
+(* **
+   * [print_image list] is a function that prints the image represented by [list]
+   * where "#" represents a filled pixel and "." represents an empty pixel.
+   *
+   * - requires: [list] must not be empty and must only contain boolean values
+   * *)
 let print_image list =
   let rec aux i = function
     | [] -> ()
@@ -8,6 +14,18 @@ let print_image list =
   in
   aux 0 list
 
+(* **
+   * [treat_input cycle_length last_cycle list] is a function that processes the
+   * list of inputs in [list]. The image is updated every [cycle_length] cycles
+   * until [last_cycle].
+   *
+   * - requires: [cycle_length] and [last_cycle] must be non-negative
+   *             [last_cycle] must be greater than or equal to [cycle_length]
+   *             [list] must not be empty and must only contain strings in the
+   *             format "addx NUMBER" or "add NUMBER" where NUMBER is an integer
+   * - returns: the list of pixels representing the final image after processing
+   *            the input list
+   * *)
 let treat_input cycle_length last_cycle list =
   let rec aux cycle register_value pixels = function
     | [] -> pixels

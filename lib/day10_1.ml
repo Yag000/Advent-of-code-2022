@@ -1,3 +1,16 @@
+(* **
+   * [treat_input first_cycle cycle_length last_cycle list] is a function that
+   * processes the list of inputs in [list]. The first cycle in which the register
+   * value is added to the total sum is [first_cycle], and this continues until
+   * [last_cycle]. The register value is added to the total sum every [cycle_length]
+   * cycles.
+   *
+   * - requires: [first_cycle], [cycle_length], and [last_cycle] must be non-negative
+   *             and [last_cycle] must be greater than or equal to [first_cycle]
+   *             [list] must not be empty and must only contain strings in the
+   *             format "addx NUMBER" or "add NUMBER" where NUMBER is an integer
+   * - returns: the total sum after processing the input list
+   * *)
 let treat_input first_cycle cycle_length last_cycle list =
   let rec aux cycle register_value total_sum = function
     | [] -> total_sum
