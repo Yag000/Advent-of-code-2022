@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * [print_image list] is a function that prints the image represented by [list]
    * where "#" represents a filled pixel and "." represents an empty pixel.
@@ -49,8 +51,5 @@ let treat_input cycle_length last_cycle list =
   aux 0 1 [] list
 
 let run () =
-  print_newline ();
-  print_newline ();
   Utilities.read_file "resources/day10.txt"
-  |> treat_input 40 240 |> List.rev |> print_image;
-  print_newline ()
+  |> treat_input 40 240 |> List.rev |> print_image

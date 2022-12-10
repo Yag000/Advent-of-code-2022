@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * overlap takes two pairs of integers as arguments and returns whether the two pairs overlap. This is determined by
    * checking whether the first pair's first integer is less than or equal to the second pair's second integer, and whether

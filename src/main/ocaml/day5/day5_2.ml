@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * get_batch takes a number, a start position, and a cargo, and returns a list of
    * characters that represent the first `number` characters in the container at
@@ -74,8 +76,5 @@ let treat_input number_of_columns list =
   aux [] list
 
 let run () =
-  print_newline ();
-  print_newline ();
   Utilities.read_file "resources/day5.txt"
-  |> treat_input 9 |> Day5_1.get_heads_cargo |> List.rev |> List.iter print_char;
-  print_newline ()
+  |> treat_input 9 |> Day5_1.get_heads_cargo |> List.rev |> List.iter print_char

@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * is_contained takes two pairs of integers as arguments and returns a boolean indicating whether the first pair is
    * contained within the second pair.

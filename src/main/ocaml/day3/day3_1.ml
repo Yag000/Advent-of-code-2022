@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * find_first_repeated takes two lists as arguments and returns the first element that appears in both lists.
    * *)

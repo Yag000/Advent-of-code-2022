@@ -1,3 +1,1 @@
-open Lib
-
-let () = Day10_2.run ()
+let () = print_string "Read the README.md file"

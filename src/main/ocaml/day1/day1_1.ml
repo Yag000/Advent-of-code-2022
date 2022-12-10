@@ -1,3 +1,5 @@
+open Lib
+
 (* **
    * get_calories_list takes a list of strings as an argument and returns a list of integers.
    * The input list is split into sublists separated by empty strings, and the sum of the
@@ -28,6 +30,5 @@ let get_max list =
   aux min_int list
 
 let run () =
-  print_newline ();
   Utilities.read_file "resources/day1.txt"
   |> get_calories_list |> get_max |> print_int

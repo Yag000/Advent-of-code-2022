@@ -1,3 +1,5 @@
+open Lib
+
 module type MOVE = sig
   (* The `MOVE` module type defines the types and functions for a game of rock-paper-scissors. *)
   type move = ROCK | PAPER | SCISSORS

@@ -1,3 +1,5 @@
+open Lib
+
 (* get_winning_move: returns the move that would win against the given move *)
 let get_winning_move (move : Day2_1.Move.move) : Day2_1.Move.move =
   match move with ROCK -> PAPER | PAPER -> SCISSORS | SCISSORS -> ROCK
