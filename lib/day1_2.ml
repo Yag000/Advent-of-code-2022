@@ -59,5 +59,5 @@ let print_int_list list =
     list
 
 let run () =
-  Utilities.read_file "resources/day1_input.txt"
+  Utilities.read_file "resources/day1.txt"
   |> Day1_1.get_calories_list |> get_top_max 3 |> print_int_list

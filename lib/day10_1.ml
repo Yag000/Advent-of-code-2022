@@ -34,6 +34,6 @@ let treat_input first_cycle cycle_length last_cycle list =
 let run () =
   print_newline ();
   print_newline ();
-  Utilities.read_file "resources/day10_input.txt"
+  Utilities.read_file "resources/day10.txt"
   |> treat_input 20 40 220 |> print_int;
   print_newline ()

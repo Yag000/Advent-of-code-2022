@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println("----------------------- Day 7.1 -----------------------");
 
-        String fileName = "resources/day7_input.txt";
+        String fileName = "resources/day7.txt";
 
         try {
             Scanner sc = new Scanner(new File(fileName));

@@ -55,7 +55,6 @@ let treat_list =
 
 let run () =
   print_newline ();
-  Utilities.read_file "resources/day3_input.txt"
-  |> treat_list |> Printf.printf "%d";
+  Utilities.read_file "resources/day3.txt" |> treat_list |> Printf.printf "%d";
 
   print_newline ()

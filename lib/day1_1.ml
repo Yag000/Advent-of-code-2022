@@ -29,5 +29,5 @@ let get_max list =
 
 let run () =
   print_newline ();
-  Utilities.read_file "resources/day1_input.txt"
+  Utilities.read_file "resources/day1.txt"
   |> get_calories_list |> get_max |> print_int

@@ -76,6 +76,6 @@ let treat_input number_of_columns list =
 let run () =
   print_newline ();
   print_newline ();
-  Utilities.read_file "resources/day5_input.txt"
+  Utilities.read_file "resources/day5.txt"
   |> treat_input 9 |> Day5_1.get_heads_cargo |> List.rev |> List.iter print_char;
   print_newline ()

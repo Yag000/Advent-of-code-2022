@@ -30,6 +30,6 @@ let treat_string number s =
 let run () =
   print_newline ();
   print_newline ();
-  Utilities.read_file "resources/day6_input.txt"
+  Utilities.read_file "resources/day6.txt"
   |> Utilities.head |> treat_string 14 |> print_int;
   print_newline ()
