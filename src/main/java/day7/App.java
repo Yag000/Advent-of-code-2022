@@ -8,8 +8,6 @@ public class App {
     public static void main(String[] args) {
         System.out.println("----------------------- Day 7.1 -----------------------");
 
-        // Open the file resources/day7_input.txt with a Scanner
-
         String fileName = "resources/day7_input.txt";
 
         try {

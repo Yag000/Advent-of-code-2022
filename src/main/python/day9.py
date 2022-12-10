@@ -2,7 +2,6 @@ import math
 
 
 class Rope:
-
     """
     Class representing a Rope, which is made up of a number of nodes.
 

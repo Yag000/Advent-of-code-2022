@@ -2,12 +2,17 @@ import math
 
 
 def compute_visible_trees_from_position(trees, i, j):
-    """Returns the amount of visible trees from a given position.
+    """
+    This function takes in a 2D list of integers called trees and two integers i and j,
+    and returns the number of trees visible from the position (i,j) in the trees grid.
 
     Args:
-        trees (lis[list[int]]): The list of trees
-        i (int): Coordinate i
-        j (int): Coordinate j
+    trees (list): A 2D list of integers representing the heights of trees in a grid
+    i (int): The row index of the position from which the trees are being counted
+    j (int): The column index of the position from which the trees are being counted
+
+    Returns:
+    int: The number of trees visible from the position (i,j) in the trees grid
     """
 
     height = trees[i][j]
@@ -49,12 +54,17 @@ def compute_visible_trees_from_position(trees, i, j):
 
 
 def is_visible(trees, i, j):
-    """Checks if a tree is visible
+    """
+    This function checks if the tree at position (i, j) in the given "trees" grid
+    is visible from the outside of the grid.
 
     Args:
-        trees (lis[list[int]]): The list of trees
-        i (int): Coordinate i
-        j (int): Coordinate j
+    - trees: a 2D list of integers representing the heights of trees in a grid
+    - i: the row index of the tree to check
+    - j: the column index of the tree to check
+
+    Returns:
+    - a boolean indicating whether the tree is visible or not
     """
 
     if i == 0 or j == 0 or i == len(trees) - 1 or j == len(trees[0]) - 1:
@@ -70,7 +80,7 @@ def is_visible(trees, i, j):
         return True
     flag = True
 
-    for k in range(i+1, len(trees[0])):
+    for k in range(i + 1, len(trees[0])):
         if trees[k][j] >= trees[i][j]:
             flag = False
             break
@@ -86,7 +96,7 @@ def is_visible(trees, i, j):
         return True
     flag = True
 
-    for k in range(j+1, len(trees[0])):
+    for k in range(j + 1, len(trees[0])):
         if trees[i][k] >= trees[i][j]:
             flag = False
             break
@@ -95,6 +105,16 @@ def is_visible(trees, i, j):
 
 
 def compute_visible(trees):
+    """
+    This function computes the number of trees in the given "trees" grid that are
+    visible from the outside of the grid.
+
+    Args:
+    - trees: a 2D list of integers representing the heights of trees in a grid
+
+    Returns:
+    - the number of visible trees in the grid
+    """
 
     counter = 0
 
@@ -107,6 +127,17 @@ def compute_visible(trees):
 
 
 def compute_best_vision(trees):
+    """
+    This function computes the maximum number of trees that are visible from a single position
+    in the given "trees" grid.
+
+    Args:
+    - trees: a 2D list of integers representing the heights of trees in a grid
+
+    Returns:
+    - the maximum number of visible trees from a single position in the grid
+    """
+
     counter = 0
 
     for i in range(len(trees)):
@@ -119,19 +150,21 @@ def compute_best_vision(trees):
 
 
 def treat_input(path):
-    """Treats the input
+    """
+    This function reads the input file at the given "path" and parses it into a
+    2D list of integers representing the heights of trees in a grid.
 
     Args:
-        path (str): Path to the input file
+    - path: the path to the input file
 
     Returns:
-        list[list[int]]: The list of trees
+    - a 2D list of integers representing the heights of trees in a grid
     """
 
     array_of_trees = []
 
-    with open(path, 'r') as f:
-        last_char = ''
+    with open(path, "r") as f:
+        last_char = ""
         for line in f:
 
             array_of_trees.append([int(x) for x in line[:-1]])
@@ -143,7 +176,14 @@ def treat_input(path):
 
 
 def main():
-    input_value = treat_input('resources/day8_input.txt')
+    """
+    This is the main entry point of the program. It reads the input from a file,
+    computes the number of visible trees in the grid, and the maximum number of
+    trees that are visible from a single position in the grid. It then prints
+    the results to the console.
+    """
+
+    input_value = treat_input("resources/day8_input.txt")
     print(compute_visible(input_value))
     print(compute_best_vision(input_value))
 

@@ -1,12 +1,22 @@
+(* Defines a module named [Chars] that uses the [Set.Make]
+   functor to create a set data structure of type [char]. *)
 module Chars = Set.Make (Char)
 
-let head = function [] -> failwith "head" | x :: _ -> x
-let string_to_char_list s = List.init (String.length s) (String.get s)
-
+(* **
+   * [are_all_chars_different s] is [true]
+   * if all characters in [s] are unique, or [false] otherwise.
+   * *)
 let are_all_chars_different (s : string) : bool =
-  let chars = string_to_char_list s |> Chars.of_list in
+  (* Convert [s] to a list of characters
+     and create a set of characters from the list. *)
+  let chars = Utilities.string_to_char_list s |> Chars.of_list in
   String.length s = Chars.cardinal chars
 
+(* **
+   * [treat_string number s] is the index of the last
+   * character in [s] that can be added to a substring of length
+   * [number] without repeating any characters.
+   * *)
 let treat_string number s =
   let rec aux i sub_string =
     if i = String.length s then -1
@@ -21,5 +31,5 @@ let run () =
   print_newline ();
   print_newline ();
   Utilities.read_file "resources/day6_input.txt"
-  |> head |> treat_string 14 |> print_int;
+  |> Utilities.head |> treat_string 14 |> print_int;
   print_newline ()
