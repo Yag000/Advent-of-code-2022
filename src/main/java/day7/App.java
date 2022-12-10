@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("----------------------- Day 7.1 -----------------------");
 
         String fileName = "resources/day7.txt";
 
@@ -17,10 +16,18 @@ public class App {
 
             arborescence.browseArborescence();
 
-            System.out.println("Day 7.1");
+            System.out.println("----------------- Day 7 -----------------");
+            System.out.println();
+
+            System.out.println("Part 1");
+            System.out.println();
             System.out.println(arborescence.browseHashMap(100000));
-            System.out.println("Day 7.2");
+            System.out.println();
+
+            System.out.println("Part 1");
+            System.out.println();
             System.out.println(arborescence.findSizeFileToRemove(70000000, 30000000));
+            System.out.println();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

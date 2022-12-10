@@ -184,8 +184,19 @@ def main():
     """
 
     input_value = treat_input("resources/day8.txt")
+
+    print("----------------- Day 8 -----------------")
+    print("")
+
+    print("Part 1")
+    print("")
     print(compute_visible(input_value))
+    print("")
+
+    print("Part 2")
+    print("")
     print(compute_best_vision(input_value))
+    print("")
 
 
 if __name__ == "__main__":

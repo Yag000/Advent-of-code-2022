@@ -34,3 +34,9 @@ Alternatively, you can run `dune exec` to run a specific solution directly, with
 ```bash
 dune exec src/main/ocaml/day1/day1.exe
 ```
+
+To run all solutions, you can run the following command:
+
+```bash
+src/run_all.sh
+```

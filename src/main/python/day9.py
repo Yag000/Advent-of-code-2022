@@ -125,8 +125,18 @@ def treat_input(path, size):
 def main():
     """Process the input file and print the number of tiles visited by the rope."""
 
-    input_value = treat_input("resources/day9.txt", 10)
-    print(input_value)
+    print("----------------- Day 9 -----------------")
+    print("")
+
+    print("Part 1")
+    print("")
+    print(treat_input("resources/day9.txt", 2))
+    print("")
+
+    print("Part 2")
+    print("")
+    print(treat_input("resources/day9.txt", 10))
+    print("")
 
 
 if __name__ == "__main__":
