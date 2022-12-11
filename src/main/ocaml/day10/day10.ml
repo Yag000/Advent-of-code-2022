@@ -10,4 +10,5 @@ let () =
   print_endline "Part 2";
   print_newline ();
   Day10_2.run ();
+  print_newline ();
   print_newline ()
