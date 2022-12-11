@@ -22,7 +22,7 @@ class Monkey:
         self.where_if_false = where_if_false
         self.number_inspections = 0
 
-    def update(self, monkey_list):
+    def update(self, monkey_list, lcm):
         for item in self.items:
             self.number_inspections += 1
 
@@ -35,7 +35,7 @@ class Monkey:
             else:
                 item = item * value
 
-            item = int(item / 3)
+            item = item % lcm
 
             if item % self.test_number == 0:
                 monkey_list[self.where_if_true].items.append(item)
@@ -63,14 +63,14 @@ class Monkey:
             self.where_if_false = int(line.split()[-1])
 
 
-def play_round(monkey_list):
+def play_round(monkey_list, lcm):
     for monkey in monkey_list:
-        monkey.update(monkey_list)
+        monkey.update(monkey_list, lcm)
 
 
-def play_rounds(monkey_list, n):
+def play_rounds(monkey_list, n, lcm):
     for _ in range(n):
-        play_round(monkey_list)
+        play_round(monkey_list, lcm)
 
 
 def main(path):
@@ -90,10 +90,12 @@ def main(path):
 
     monkeys.append(temp_monkey)
 
-    for monkey in monkeys:
-        print(monkey)
+    lcm = 1
 
-    play_rounds(monkeys, 20)
+    for monkey in monkeys:
+        lcm *= monkey.test_number
+
+    play_rounds(monkeys, 10000, lcm)
 
     values = [monkey.number_inspections for monkey in monkeys]
 
