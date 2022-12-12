@@ -31,11 +31,11 @@ let treat_string number s =
 
 let run1 () =
   Utilities.read_file "resources/day6.txt"
-  |> Utilities.head |> treat_string 4 |> print_int
+  |> List.hd |> treat_string 4 |> print_int
 
 let run2 () =
   Utilities.read_file "resources/day6.txt"
-  |> Utilities.head |> treat_string 14 |> print_int
+  |> List.hd |> treat_string 14 |> print_int
 
 let () =
   let t1 = Sys.time () in
