@@ -1,4 +1,5 @@
 import math
+import time
 
 
 class Rope:
@@ -125,8 +126,31 @@ def treat_input(path, size):
 def main():
     """Process the input file and print the number of tiles visited by the rope."""
 
-    input_value = treat_input("resources/day9.txt", 10)
-    print(input_value)
+    st = time.time()
+
+
+    print("----------------- Day 9 -----------------")
+    print("")
+
+    print("Part 1")
+    print("")
+    print(treat_input("resources/day9.txt", 2))
+    print("")
+
+    et = time.time()
+    elapsed_time = et - st
+    print("Time:", elapsed_time, "s")
+    print("")
+
+    print("Part 2")
+    print("")
+    print(treat_input("resources/day9.txt", 10))
+    print("")
+
+    st = et
+    et = time.time()
+    elapsed_time = et - st
+    print("Time:", elapsed_time, "s")
 
 
 if __name__ == "__main__":
