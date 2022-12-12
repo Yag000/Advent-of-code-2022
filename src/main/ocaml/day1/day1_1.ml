@@ -1,10 +1,10 @@
 open Lib
 
-(* **
-   * get_calories_list takes a list of strings as an argument and returns a list of integers.
-   * The input list is split into sublists separated by empty strings, and the sum of the
-   * elements in each sublist is computed and returned as an integer.
-   * *)
+(** get_calories_list takes a list of strings as an argument and returns 
+    a list of integers. The input list is split into sublists separated by 
+    empty strings, and the sum of the elements in each sublist is computed 
+    and returned as an integer.
+*)
 let get_calories_list list =
   let lines = ref [] in
   let rec aux acc = function
@@ -18,10 +18,9 @@ let get_calories_list list =
   aux 0 list;
   !lines
 
-(* **
-   * get_max takes a list of integers as an argument and
-   * returns the maximum value in the list.
-   * *)
+(** get_max takes a list of integers as an argument and
+    returns the maximum value in the list.
+*)
 let get_max list =
   let rec aux lastMax = function
     | [] -> lastMax
