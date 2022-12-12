@@ -25,6 +25,7 @@ def search_path(starting_char, array):
         for j in range(len(array[0])):
             if array[i][j] in starting_char:
                 queue.append((0, i, j))
+                visited.add((i, j))
 
     for times, x, y in queue:
         if array[x][y] == "E":
@@ -57,7 +58,7 @@ if __name__ == "__main__":
 
     input_value = treat_input("resources/day12.txt")
 
-    print("----------------- Day 8 -----------------")
+    print("----------------- Day 12 -----------------")
     print("")
 
     print("Part 1")
