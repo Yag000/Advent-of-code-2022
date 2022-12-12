@@ -1,3 +1,3 @@
 (executable
- (name day11_1)
+ (name day12_1)
  (libraries lib))
