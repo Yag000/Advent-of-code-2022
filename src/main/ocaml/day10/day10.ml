@@ -1,6 +1,6 @@
 let () =
   print_newline ();
-  print_endline "Day 10";
+  print_endline "----------------- Day 10 -----------------";
   print_newline ();
   print_endline "Part 1";
   print_newline ();
