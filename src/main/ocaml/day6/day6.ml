@@ -38,6 +38,7 @@ let run2 () =
   |> Utilities.head |> treat_string 14 |> print_int
 
 let () =
+  let t1 = Sys.time () in
   print_newline ();
   print_endline "----------------- Day 6 -----------------";
   print_newline ();
@@ -46,8 +47,13 @@ let () =
   run1 ();
   print_newline ();
   print_newline ();
+  let t2 = Sys.time () in
+  print_endline ("Time: " ^ string_of_float (t2 -. t1) ^ "s");
+  print_newline ();
   print_endline "Part 2";
   print_newline ();
   run2 ();
   print_newline ();
+  print_newline ();
+  print_endline ("Time: " ^ string_of_float (Sys.time () -. t2) ^ "s");
   print_newline ()

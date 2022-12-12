@@ -1,4 +1,5 @@
 import math
+import time
 
 
 def compute_visible_trees_from_position(trees, i, j):
@@ -183,6 +184,8 @@ def main():
     the results to the console.
     """
 
+    st = time.time()
+
     input_value = treat_input("resources/day8.txt")
 
     print("----------------- Day 8 -----------------")
@@ -193,9 +196,20 @@ def main():
     print(compute_visible(input_value))
     print("")
 
+    et = time.time()
+    elapsed_time = et - st
+    print("Time:", elapsed_time, "s")
+    print("")
+
     print("Part 2")
     print("")
     print(compute_best_vision(input_value))
+    print("")
+
+    st = et
+    et = time.time()
+    elapsed_time = et - st
+    print("Time:", elapsed_time, "s")
     print("")
 
 

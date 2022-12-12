@@ -1,5 +1,3 @@
-
-
 eval $(opam env) 
 dune build
 
@@ -17,6 +15,4 @@ python3 src/main/python/day9.py
 
 dune exec src/main/ocaml/day10/day10.exe 
 
-
-
-
+python3 src/main/python/day11.py
