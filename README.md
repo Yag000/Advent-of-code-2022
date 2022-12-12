@@ -2,15 +2,21 @@
 
 This repository contains my solutions to the [Advent of Code 2022](https://adventofcode.com/2022) programming challenges. I have implemented my solutions in three languages: OCaml, Java, and Python. The majority of my solutions are written in OCaml, with a few in Java and Python for specific challenges where those languages are better suited.
 
+## Challenges solved in each language
+
+- **Ocaml** : [1-6], [10-12]
+- **Python** : 8, 9, 11, 12
+- **Java** : 7
+
 ## Folder Structure
 
 This project is structured as a [dune](https://dune.build) project, with the following layout:
 
-* `src/`: Contains the source code for my solutions, organized by language
-  * `src/main/ocaml/`: Contains my OCaml solutions
-  * `src/main/java/`: Contains my Java solutions
-  * `src/main/python/`: Contains my Python solutions
-* `resources/`: Contains the input files for the challenges
+- `src/`: Contains the source code for my solutions, organized by language
+  - `src/main/ocaml/`: Contains my OCaml solutions
+  - `src/main/java/`: Contains my Java solutions
+  - `src/main/python/`: Contains my Python solutions
+- `resources/`: Contains the input files for the challenges
 
 ## Running the Solutions
 
