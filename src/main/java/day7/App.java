@@ -10,6 +10,7 @@ public class App {
 
         long startTime = System.nanoTime();
 
+
         String fileName = "resources/day7.txt";
 
         try {
@@ -43,6 +44,7 @@ public class App {
             formatted = df.format((endTime2 - endTime1) / 10E9);
             System.out.println("Time: " + formatted + "s");
             System.out.println();
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

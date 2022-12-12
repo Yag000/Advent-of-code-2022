@@ -128,6 +128,7 @@ def main():
 
     st = time.time()
 
+
     print("----------------- Day 9 -----------------")
     print("")
 
