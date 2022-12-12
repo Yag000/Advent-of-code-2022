@@ -1,4 +1,5 @@
 let () =
+  let t1 = Sys.time () in
   print_newline ();
   print_endline "----------------- Day 10 -----------------";
   print_newline ();
@@ -7,8 +8,12 @@ let () =
   Day10_1.run ();
   print_newline ();
   print_newline ();
-  print_endline "Part 2";
+  let t2 = Sys.time () in
+  print_endline ("Time: " ^ string_of_float (t2 -. t1) ^ "s");
   print_newline ();
+  print_endline "Part 2";
   Day10_2.run ();
   print_newline ();
+  print_newline ();
+  print_endline ("Time: " ^ string_of_float (Sys.time () -. t2) ^ "s");
   print_newline ()

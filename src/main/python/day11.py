@@ -205,7 +205,7 @@ def main2(path):
 
 
 if __name__ == "__main__":
-    
+
     st = time.time()
 
     print("----------------- Day 11 -----------------")
@@ -215,20 +215,19 @@ if __name__ == "__main__":
     print("")
     print(main1("resources/day11.txt"))
     print("")
-    
+
     et = time.time()
     elapsed_time = et - st
-    print('Execution time:', elapsed_time, 'seconds')
+    print("Time:", elapsed_time, "s")
     print("")
-    
 
     print("Part 2")
     print("")
     print(main2("resources/day11.txt"))
     print("")
-    
+
     st = et
     et = time.time()
     elapsed_time = et - st
-    print('Execution time:', elapsed_time, 'seconds')
+    print("Time:", elapsed_time, "s")
     print("")
