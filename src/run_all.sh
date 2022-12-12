@@ -14,5 +14,5 @@ python3 src/main/python/day8.py
 python3 src/main/python/day9.py
 
 dune exec src/main/ocaml/day10/day10.exe 
-
-python3 src/main/python/day11.py
+dune exec src/main/ocaml/day11/day11.exe 
+dune exec src/main/ocaml/day11/day12.exe 
