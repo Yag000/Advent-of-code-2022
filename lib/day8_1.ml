@@ -64,16 +64,7 @@ let get_visible array =
   !set
 
 let treat_input list =
-  let len = List.length list in
-  let make_array n = Array.make n 0 in
-  let array = Array.init len (fun _ -> make_array len) in
-  List.iteri
-    (fun i x ->
-      List.iteri
-        (fun j y -> array.(i).(j) <- int_of_string (String.make 1 y))
-        (Utilities.string_to_char_list x))
-    list;
-  get_visible array |> Tuples.cardinal
+  get_visible (Utilities.parse_int_input list) |> Tuples.cardinal
 
 let run () =
   print_newline ();
