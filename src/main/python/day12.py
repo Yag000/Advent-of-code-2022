@@ -12,6 +12,7 @@ def get_neighbors(array, x, y):
 
     Yields:
         Tuple[int, int]: The x and y coordinates of the neighbor positions.
+
     """
 
     for new_x, new_y in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
@@ -29,6 +30,7 @@ def is_correct_position(pos1, pos2):
 
     Returns:
         bool: True if the characters are considered neighbors, False otherwise.
+
     """
 
     if pos2 == "E":
@@ -50,6 +52,7 @@ def search_path(starting_char, array):
     :param array: a two-dimensional list representing the grid to search in
     :return: a set of tuples containing the coordinates of the visited positions
     """
+
 
     queue = []
     visited = set()
@@ -78,10 +81,13 @@ def search_path(starting_char, array):
 
 def treat_input(path):
     """
-    This function reads the input file located at the given `path` and returns the content as a two-dimensional list.
+    Reads a file located at the given path and returns its contents as a 2D array of characters.
 
-    :param path: the path to the input file
-    :return: a two-dimensional list representing the content of the input file
+    Args:
+        path (str): The path to the file to read.
+
+    Returns:
+        A 2D array of characters representing the contents of the file.
     """
 
     array = []

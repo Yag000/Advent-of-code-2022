@@ -37,19 +37,6 @@ let read_file_reversed filename =
 let string_to_char_list s = s |> String.to_seq |> List.of_seq
 
 (* **
-   * head takes a list and returns the first element of the list.
-   * If the list is empty, it raises the "head" exception.
-   * *)
-let head = function [] -> failwith "head" | x :: _ -> x
-
-(* **
-   * tail takes a list and returns a new list that contains all the elements of the
-   * original list except the first one.
-   * If the list is empty, it raises the "tail" exception.
-   * *)
-let tail = function [] -> failwith "tail" | _ :: xs -> xs
-
-(* **
    * get_min takes a list of integers as an argument and returns the minimum value in the list.
    * *)
 let get_min list =
@@ -97,3 +84,28 @@ let get_top_max n list =
     | value :: l -> aux (replace value temporal_max) l
   in
   aux (init_list n) list
+
+let parse_char_input input =
+  let rec aux list i array =
+    match list with
+    | [] -> array
+    | h :: t ->
+        String.iteri (fun j c -> array.(i).(j) <- c) h;
+        aux t (i + 1) array
+  in
+  let array =
+    Array.make_matrix (List.length input) (String.length (List.hd input)) ' '
+  in
+  aux input 0 array
+
+let parse_int_input input =
+  let array =
+    Array.make_matrix (List.length input) (String.length (List.hd input)) 0
+  in
+  List.iteri
+    (fun i x ->
+      List.iteri
+        (fun j y -> array.(i).(j) <- int_of_string (String.make 1 y))
+        (string_to_char_list x))
+    input;
+  array

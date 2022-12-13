@@ -3,6 +3,7 @@ open Lib
 type operation = int -> int
 (** The type of operations that can be performed on a monkey's items. *)
 
+
 type monkey = {
   items : int list;
   operation : operation;
@@ -20,6 +21,7 @@ type monkey = {
     @param item The item to add.
     @return The updated monkey, with the new item in its inventory. 
 *)
+
 let add_item monkey item = { monkey with items = item :: monkey.items }
 
 let update_monkey id monkeys inspected lcm is_part1 =
