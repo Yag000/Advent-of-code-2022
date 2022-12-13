@@ -1,5 +1,7 @@
 open Lib
 
+type deep_list = S of int | L of deep_list list
+
 let part1 () = ()
 let part2 () = ()
 
