@@ -1,9 +1,9 @@
 open Lib
 
-(* **
-    * print_int_list takes a list of integers as an argument and prints each value
-   * in the list on a separate line.
-   * *)
+(**
+     print_int_list takes a list of integers as an argument and prints each value
+     in the list on a separate line.
+*)
 let print_int_list list =
   List.iter
     (fun value ->

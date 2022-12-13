@@ -1,6 +1,8 @@
 open Lib
 
 type operation = int -> int
+(** The type of operations that can be performed on a monkey's items. *)
+
 
 type monkey = {
   items : int list;
@@ -9,6 +11,16 @@ type monkey = {
   if_true : int;
   if_false : int;
 }
+(** This is the type of a monkey. It has a list of items in its inventory,
+    an operation to perform on those items, a test value, and two integers 
+    to specify where to send the items after the operation has been applied. *)
+
+(** This function adds a new item to the given monkey's inventory.
+
+    @param monkey The monkey to add the item to.
+    @param item The item to add.
+    @return The updated monkey, with the new item in its inventory. 
+*)
 
 let add_item monkey item = { monkey with items = item :: monkey.items }
 

@@ -3,15 +3,16 @@ import time
 
 def get_neighbors(array, x, y):
     """
-    Returns the neighboring cells of the given cell in the given two-dimensional array.
+    Get the immediate neighbors of a given position in a 2D array.
 
-    The neighbors of a cell are the cells that are adjacent to it horizontally, vertically, or diagonally.
+    Args:
+        array (List[List[int]]): A 2D list representing the grid.
+        x (int): The x-coordinate of the position.
+        y (int): The y-coordinate of the position.
 
-    :param array: A two-dimensional array of cells.
-    :param x: The x-coordinate of the cell.
-    :param y: The y-coordinate of the cell.
-    :return: An iterator yielding the coordinates of the neighboring cells.
-    :rtype: Iterator[Tuple[int, int]]
+    Yields:
+        Tuple[int, int]: The x and y coordinates of the neighbor positions.
+
     """
 
     for new_x, new_y in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
@@ -21,12 +22,15 @@ def get_neighbors(array, x, y):
 
 def is_correct_position(pos1, pos2):
     """
-    Returns whether the second position is adjacent to the first position in the alphabet.
+    Check if two characters can be considered as neighbors in the grid.
 
-    :param pos1: The first position.
-    :param pos2: The second position.
-    :return: True if the second position is adjacent to the first position in the alphabet, False otherwise.
-    :rtype: bool
+    Args:
+        pos1 (str): The first character.
+        pos2 (str): The second character.
+
+    Returns:
+        bool: True if the characters are considered neighbors, False otherwise.
+
     """
 
     if pos2 == "E":
@@ -40,17 +44,16 @@ def is_correct_position(pos1, pos2):
 
 def search_path(starting_char, array):
     """
-    Searches for a path from the given starting character to the end character in the given two-dimensional array.
+    This function searches for a path in the given `array` starting from the characters specified in `starting_char`.
+    The path is searched using a breadth-first search algorithm. The function prints the number of steps required
+    to reach the end of the path and returns the set of visited coordinates.
 
-    This function uses a breadth-first search algorithm to find the shortest path from the given starting character
-    to the end character, if such a path exists. The function prints the length of the shortest path and returns a set
-    of coordinates visited during the search.
-
-    :param starting_char: The starting character.
-    :param array: A two-dimensional array of characters.
-    :return: A set of coordinates visited during the search.
-    :rtype: Set[Tuple[int, int]]
+    :param starting_char: a string or a list of strings containing the characters to start the search from
+    :param array: a two-dimensional list representing the grid to search in
+    :return: a set of tuples containing the coordinates of the visited positions
     """
+
+
     queue = []
     visited = set()
 
