@@ -3,7 +3,6 @@ open Lib
 type operation = int -> int
 (** The type of operations that can be performed on a monkey's items. *)
 
-
 type monkey = {
   items : int list;
   operation : operation;
@@ -24,6 +23,17 @@ type monkey = {
 
 let add_item monkey item = { monkey with items = item :: monkey.items }
 
+(** This function updates the given monkey with the specified ID.
+
+    @param id The ID of the monkey to update.
+    @param monkeys The array of monkeys.
+    @param inspected The array of values representing the amount of items
+                    inspected by each monkey.
+    @param lcm The least common multiple of the test values of all monkeys.
+    @param is_part1 A boolean value indicating whether this is part 1 of the
+                    problem (true if it is, false otherwise).
+    @return The updated array of monkeys.
+*)
 let update_monkey id monkeys inspected lcm is_part1 =
   let monkey = monkeys.(id) in
   inspected.(id) <- inspected.(id) + List.length monkey.items;
@@ -41,20 +51,48 @@ let update_monkey id monkeys inspected lcm is_part1 =
     monkey.items;
   monkeys.(id) <- { monkey with items = [] }
 
+(** This function performs a round of operations on the monkeys.
+
+    @param monkeys The array of monkeys.
+    @param inspected The array of values representing the amount of items
+                    inspected by each monkey.
+    @param lcm The least common multiple of the test values of all monkeys.
+    @param is_part1 A boolean value indicating whether this is part 1 of the
+                    problem (true if it is, false otherwise).
+*)
 let round monkeys inspected lcm is_part1 =
   Array.iteri
     (fun id _ -> update_monkey id monkeys inspected lcm is_part1)
     monkeys
 
+(** This function runs the simulation for the given number of rounds.
+  
+      @param monkeys The array of monkeys.
+      @param inspected The array of values representing the amount of items
+                      inspected by each monkey.
+      @param max_rounds The maximum number of rounds to run the simulation for.
+      @param lcm The least common multiple of the test values of all monkeys.
+      @param is_part1 A boolean value indicating whether this is part 1 of the
+                      problem (true if it is, false otherwise).
+      @return The updated array of values representing the amount of items
+              inspected by each monkey.
+*)
 let rec run monkeys inspected max_rounds lcm is_part1 =
   if max_rounds = 0 then inspected
   else (
     round monkeys inspected lcm is_part1;
     run monkeys inspected (max_rounds - 1) lcm is_part1)
 
+(** This function gets the business value of the given number of monkeys.
+
+    @param n The number of monkeys to get the business value of.
+    @param inspected The array of values representing the amount of items
+                    inspected by each monkey.
+*)
 let get_business n inspected =
   Utilities.get_top_max n (Array.to_list inspected) |> List.fold_left ( * ) 1
 
+(** This function solves the problem for part 1 of the day's challenge. *)
 let get_items_from_string_list =
   let rec aux acc = function
     | [] -> acc
@@ -66,6 +104,13 @@ let get_items_from_string_list =
   in
   aux []
 
+(** This function parses a line of input and updates the given monkey.
+
+      @param monkey The monkey to update.
+      @param list The list of words in the line of input.
+      @return A tuple containing a boolean value indicating whether the monkey
+              needs to be updated, and the updated monkey.
+*)
 let parse_line monkey list =
   try
     match list with
@@ -94,6 +139,14 @@ let parse_line monkey list =
         (false, { monkey with if_false = int_of_string number })
     | _ -> (true, monkey)
   with Failure _ -> (true, monkey)
+
+(** This function parses the input and returns the least common multiple of the
+    test values of all monkeys, and an array of monkeys.
+
+    @param input The input to parse.
+    @return A tuple containing the least common multiple of the test values of
+            all monkeys, and an array of monkeys.
+*)
 
 let parse_input input =
   let rec aux input size lcm monkeys monkey =
@@ -128,10 +181,12 @@ let parse_input input =
       if_false = 0;
     }
 
+(** This function solves the problem for part 1 of the day's challenge. *)
 let run1 monkeys =
   let inspected = run monkeys (Array.make 8 0) 20 0 true in
   get_business 2 inspected |> print_int
 
+(** This function solves the problem for part 2 of the day's challenge. *)
 let run2 lcm monkeys =
   let inspected = run monkeys (Array.make 8 0) 10000 lcm false in
   get_business 2 inspected |> print_int
