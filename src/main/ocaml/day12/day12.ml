@@ -1,5 +1,8 @@
 open Lib
 
+(** Day 12 *)
+
+(** Module to create a set of tuples. *)
 module IntPair = struct
   type t = int * int
 
@@ -8,6 +11,16 @@ end
 
 module Tuples = Set.Make (IntPair)
 
+(** [is_movement_possible map x y next_x next_y visited] checks if the movement
+    from [x, y] to [next_x, next_y] is possible. 
+
+    @param map the map
+    @param x the x coordinate of the current position
+    @param y the y coordinate of the current position
+    @param next_x the x coordinate of the next position
+    @param next_y the y coordinate of the next position
+    @param visited the set of visited positions
+*)
 let is_movement_possible map x y next_x next_y visited =
   if
     next_x < 0
@@ -23,6 +36,14 @@ let is_movement_possible map x y next_x next_y visited =
     int_of_char pos2 - int_of_char pos1 <= 1
     && not (Tuples.mem (next_x, next_y) visited)
 
+(** [all_possible map x y visited] returns all the possible movements from
+    [x, y] that are not in [visited].
+
+    @param map the map
+    @param x the x coordinate of the current position
+    @param y the y coordinate of the current position
+    @param visited the set of visited positions
+*)
 let all_possible map x y visited =
   if x < 0 || x >= Array.length map || y < 0 || y >= Array.length map.(0) then
     []
@@ -36,7 +57,14 @@ let all_possible map x y visited =
     in
     aux [] [ (x + 1, y); (x - 1, y); (x, y + 1); (x, y - 1) ]
 
-let search_path starting_values array =
+(** [search_path starting_values map] returns the minimum number of steps to
+    reach the exit from the starting positions in [starting_values]. It uses the
+    breadth-first search algorithm.
+
+    @param starting_values the starting positions
+    @param map the map
+*)
+let search_path starting_values map =
   let queue = ref [] in
   let visited = ref Tuples.empty in
   Array.iteri
@@ -47,13 +75,13 @@ let search_path starting_values array =
             queue := (0, i, j) :: !queue;
             visited := Tuples.add (i, j) !visited))
         row)
-    array;
+    map;
   let rec aux = function
     | [] -> -1
     | (times, x, y) :: t ->
-        if array.(x).(y) = 'E' then times
+        if map.(x).(y) = 'E' then times
         else
-          let next_movements = all_possible array x y !visited in
+          let next_movements = all_possible map x y !visited in
           let next_movements =
             List.map (fun (x, y) -> (times + 1, x, y)) next_movements
           in
@@ -64,7 +92,6 @@ let search_path starting_values array =
   in
 
   aux !queue
-
 
 let () =
   let t1 = Sys.time () in
