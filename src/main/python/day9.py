@@ -1,4 +1,3 @@
-import math
 import time
 
 
@@ -127,7 +126,6 @@ def main():
     """Process the input file and print the number of tiles visited by the rope."""
 
     st = time.time()
-
 
     print("----------------- Day 9 -----------------")
     print("")
