@@ -165,6 +165,7 @@ def treat_input(path):
     array_of_trees = []
 
     with open(path, "r") as f:
+
         last_char = ""
         for line in f:
 

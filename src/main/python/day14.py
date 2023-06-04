@@ -27,7 +27,7 @@ def init_board(obstacles):
                         obstacle[i][1]
                     ] = 1
 
-    return board
+    return x_max, board
 
 
 def drop_sand(x, y, board):
@@ -42,50 +42,47 @@ def drop_sand(x, y, board):
         (int,int): final position of the sand
     """
 
-    if x < 0 or x >= len(board) or y < 0 or y >= len(board[0]):
-        return (-1, -1)
+    if x < 0 or x >= len(board):
+        return False
+
+    if y >= len(board[0]) - 1:
+        return True
+
+    new_pos = [x, y]
 
     # Check if the sand can fall directly down
     if y + 1 < len(board[0]) and board[x][y + 1] == 0:
-        y += 1
+        new_pos[1] += 1
     # If not, check if it can go left
     elif x - 1 >= 0 and board[x - 1][y] == 0:
-        y += 1
-        x -= 1
+        new_pos[1] += 1
+        new_pos[0] -= 1
     # If not, check if it can go right
     elif x + 1 < len(board) and board[x + 1][y] == 0:
-        y += 1
-        x += 1
+        new_pos[1] += 1
+        new_pos[0] += 1
 
-    return (x, y)
+    if new_pos == [x, y]:
+        return True
+
+    board[x][y] = 0
+    board[new_pos[0]][new_pos[1]] = 2
+
+    return drop_sand(new_pos[0], new_pos[1], board)
 
 
-def simulate(board):
+def simulate(x_max, board):
 
-    initial_pos = (500 - len(board) + 1, 0)
-
-    print(initial_pos)
+    initial_pos = (x_max - 500, 0)
 
     is_falling = True
     counter = 0
 
     while is_falling:
-        is_sand_falling = True
         pos = initial_pos
 
-        last_pos = (0, 0)
-
-        while is_sand_falling:
-            new_pos = drop_sand(pos[0], pos[1], board)
-            if new_pos == (-1, -1):
-                is_falling = False
-                break
-            if last_pos == new_pos:
-                is_sand_falling = False
-                board[last_pos[1]][last_pos[0]] = 2
-                counter += 1
-            last_pos = pos
-            pos = new_pos
+        is_falling = drop_sand(pos[0], pos[1], board)
+        counter += 1
 
     return counter
 
@@ -101,5 +98,21 @@ def treat_input(path):
     return obstacles
 
 
+def print_board(board):
+
+    for i in board:
+        for j in i:
+            if j == 0:
+                print(" ", end="")
+            if j == 1:
+                print("#", end="")
+            else:
+                print("o", end="")
+        print("\n", end="")
+
+
 if __name__ == "__main__":
-    print(simulate(init_board(treat_input("resources/day14.txt"))))
+
+    x_max, board = init_board(treat_input("resources/day14.txt"))
+    print_board(board)
+    # print(simulate(x_max, board))

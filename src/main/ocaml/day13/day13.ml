@@ -1,6 +1,28 @@
 open Lib
 
-type deep_list = S of int | L of deep_list list
+type deep_list = I of int | L of deep_list list
+type info = Empty | Start of info | End of info | In of int
+
+let rec string_to_deep_list s =
+  match s with
+  | [] -> []
+  | Empty :: t -> L [] :: string_to_deep_list t
+  | In x :: t -> I x :: string_to_deep_list t
+  | Start info :: t -> L (string_to_deep_list [ info ]) :: string_to_deep_list t
+  | End info :: t -> string_to_deep_list [ info ] @ string_to_deep_list t
+
+let rec print_deep_list = function
+  | I n ->
+      print_int n;
+      print_string " ,"
+  | L list ->
+      print_string "[";
+      List.iter
+        (fun x ->
+          print_deep_list x;
+          print_string " ,")
+        list;
+      print_string "]"
 
 let part1 () = ()
 let part2 () = ()
@@ -25,4 +47,11 @@ let () =
   print_newline ();
   print_newline ();
   print_endline ("Time: " ^ string_of_float (Sys.time () -. t2) ^ "s");
-  print_newline ()
+  print_newline ();
+  print_newline ();
+  print_newline ();
+  print_newline ();
+  string_to_deep_list
+    "[[],[],[[],10,[[7,0,1,1,10],9,6],[1,[4,9,1],6,[4,6,0]],[0,3,0]],[1,[10,[7,4,3,4],[]],[2,2],7,[[10],5,3]]]\n\
+    \  "
+  |> print_deep_list

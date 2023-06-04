@@ -53,7 +53,6 @@ def search_path(starting_char, array):
     :return: a set of tuples containing the coordinates of the visited positions
     """
 
-
     queue = []
     visited = set()
 
