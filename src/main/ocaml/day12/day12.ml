@@ -65,22 +65,12 @@ let search_path starting_values array =
 
   aux !queue
 
-let parse_input input =
-  let rec aux list i array =
-    match list with
-    | [] -> array
-    | h :: t ->
-        String.iteri (fun j c -> array.(i).(j) <- c) h;
-        aux t (i + 1) array
-  in
-  let array =
-    Array.make_matrix (List.length input) (String.length (List.hd input)) ' '
-  in
-  aux input 0 array
 
 let () =
   let t1 = Sys.time () in
-  let input = Utilities.read_file "resources/day12.txt" |> parse_input in
+  let input =
+    Utilities.read_file "resources/day12.txt" |> Utilities.parse_char_input
+  in
   print_newline ();
   print_endline "----------------- Day 12 -----------------";
   print_newline ();

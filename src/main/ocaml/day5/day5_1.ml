@@ -24,8 +24,8 @@ let print_cargo cargo =
   * element. 
  * *)
 let move_one start end_ cargo =
-  cargo.(end_) <- Utilities.head cargo.(start) :: cargo.(end_);
-  cargo.(start) <- Utilities.tail cargo.(start)
+  cargo.(end_) <- List.hd cargo.(start) :: cargo.(end_);
+  cargo.(start) <- List.tl cargo.(start)
 
 (* **
    * move takes a number of moves, a start position, an end position, and an array of char lists as arguments. It performs
@@ -110,7 +110,7 @@ let treat_input number_of_columns list =
  * elements of each list in the cargo array.
  * *)
 let get_heads_cargo cargo =
-  Array.fold_left (fun acc x -> Utilities.head x :: acc) [] cargo
+  Array.fold_left (fun acc x -> List.hd x :: acc) [] cargo
 
 let run () =
   Utilities.read_file "resources/day5.txt"
