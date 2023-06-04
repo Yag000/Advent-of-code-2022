@@ -74,3 +74,8 @@ _bin/
 
 # IntelliJ IDEA
 .idea/
+
+
+# Added by cargo
+
+/target
