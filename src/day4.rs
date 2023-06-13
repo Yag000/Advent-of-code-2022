@@ -28,37 +28,17 @@ fn day4_1(content: &str) {
 }
 
 fn get_sections(line: &str) -> (Section, Section) {
-    let mut subsections = line.split(",");
-    let section1_str = subsections.next().unwrap();
-    let section2_str = subsections.next().unwrap();
-
     let mut section1 = Section(0, 0);
     let mut section2 = Section(0, 0);
 
-    let mut section1_str_list = section1_str.split("-");
-    let mut section2_str_list = section2_str.split("-");
+    let section_str_list: Vec<&str> = line.split("-").collect();
+    section1.0 = section_str_list[0].parse().unwrap();
 
-    section1.0 = section1_str_list
-        .next()
-        .unwrap()
-        .parse()
-        .expect("Invalid input");
-    section1.1 = section1_str_list
-        .next()
-        .unwrap()
-        .parse()
-        .expect("Invalid input");
+    let middle: Vec<&str> = section_str_list[1].split(",").collect();
+    section1.1 = middle[0].parse().unwrap();
+    section2.0 = middle[1].parse().unwrap();
 
-    section2.0 = section2_str_list
-        .next()
-        .unwrap()
-        .parse()
-        .expect("Invalid input");
-    section2.1 = section2_str_list
-        .next()
-        .unwrap()
-        .parse()
-        .expect("Invalid input");
+    section2.1 = section_str_list[2].parse().unwrap();
 
     (section1, section2)
 }
@@ -81,5 +61,5 @@ fn day4_2(content: &str) {
 }
 
 fn does_overlaps(section1: &Section, section2: &Section) -> bool {
-    (section1.0 <= section2.1 && section1.1 >= section2.0)
+    section1.0 <= section2.1 && section1.1 >= section2.0
 }
